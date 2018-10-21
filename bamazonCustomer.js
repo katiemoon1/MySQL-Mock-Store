@@ -60,6 +60,8 @@ function goShopping() {
 
             if (selectedQuantity < selectedId.stock_quantity) {
 
+                console.log("Awesome! It is in stock! Let me go place the order...")
+
                 connection.query(
                     "UPDATE products SET ? WHERE ?",
                     [
@@ -72,7 +74,7 @@ function goShopping() {
                     ],
                     function(error, results) {
                         if (error) throw error
-                        console.log(results.affectedRows + " products updated!")
+                        console.log("Your order has been placed! Your total is $" + selectedId.price * selectedQuantity)
                     }
                 )
             } else {
